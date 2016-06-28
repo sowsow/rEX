@@ -77,7 +77,7 @@ namespace rEX.Controllers
 
         //
         // POST: /Manage/RemoveLogin
-        [HttpPost]
+        [HttpPost]  // [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {

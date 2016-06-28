@@ -63,7 +63,7 @@ namespace rEX.Controllers
 
         //
         // POST: /Account/Login
-        [HttpPost]
+        [HttpPost]  // [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)

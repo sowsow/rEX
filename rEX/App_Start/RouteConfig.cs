@@ -17,41 +17,32 @@ namespace rEX
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "rd", action = "Index", id = UrlParameter.Optional }
             );
 
+            /*
             routes.MapRoute(
                 name: "ProductInfo",
                 url: "{controller}/{productId}/{locale}",
                 defaults: new { controller = "Product", action = "Index", locale = "en-us"},
                 constraints: new { productId = @"\d[8]", locale = "[a-z]{2}-[a-z]{2}" }
             );
+            */
 
+            // Register Custom Route Handler
+            Route rdRoute = new Route("RD", new RDRouteHandler());
+            routes.Add("RDRoute", rdRoute);
 
-            // Register Custom Custom Route Handler
-            Route clarityRoute = new Route("clarity", new ClarityRouteHandler());
-            routes.Add("ClarityRoute", clarityRoute);
+            routes.MapRoute(
+                name: "RDEchoRoute",
+                url: "{controller}/{action}/data",
+                defaults: new { controller = "RD", action = "Echo", data = UrlParameter.Optional }
+            );
 
         }
     }
 
 
-    /// <summary>
-    /// Custom Route Handler Example
-    /// </summary>
-    public class ClarityRouteHandler : IRouteHandler
-    {
-        public IHttpHandler GetHttpHandler(RequestContext requestContext)
-        {
-            if (requestContext.HttpContext.Request.Url.AbsolutePath == "/clarity")
-            {
-                requestContext.RouteData.Values["controller"] = "home";
-                requestContext.RouteData.Values["action"] = "clarity";
-            }
-
-            return new MvcHandler(requestContext);
-        }
-    }
 
 
 
