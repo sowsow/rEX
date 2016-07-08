@@ -14,7 +14,32 @@ namespace rEX.Controllers
         // Implicit action name: Index
         public ActionResult Index()
         {
-            return View();  // Same as View("index");
+            // ViewData Dictionary 
+            //-- Packed into [view context]
+            //-- APS.NET MVC infrastructure moves data from the controller level to view level
+            //-- [view] objects (ViewPage for ASPX && WebViewPage for Razor) expose ViewData to View Template
+            ViewData["PageTitle"] = "R&D of ASP.NET MVC"; // Not Recommended, hard to maintain when Controller & View become large
+
+
+            // ViewBag Dictionary -- Dynamic
+            // -- Available since MVC3 and .NET 4, whereas ViewData is available for all MVC version and .NET 2
+            // -- Relies on Dynamic Language Runtime (DLR) to interpret expressions and Run Time/Execution Time
+            // -- VS IntelliSense can't indicate anything while JetBrains ReSharper can
+            ViewBag.AuthorName = "Rex";
+
+
+            // Strongly Typed View Models
+            // -- Define a view-model class for each view that is added to the application
+            /*  e.g.
+                // Pack data for the view using a view-specific container object
+                var model = new MyViewModel();  // name: [Controller][View]["ViewModel"] --> RDIndexViewModel
+                // Populate the model
+                ...
+                // Trigger the view
+                return View(model);
+            */
+
+            return View();  // Same as View("index"); // if nothing, view name == action/method name by default
         }
 
 

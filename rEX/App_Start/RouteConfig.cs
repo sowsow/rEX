@@ -29,7 +29,7 @@ namespace rEX
             );
             */
 
-            // Register Custom Route Handler
+            // Example - Register Custom Route Handler
             Route rdRoute = new Route("RD", new RDRouteHandler());
             routes.Add("RDRoute", rdRoute);
 

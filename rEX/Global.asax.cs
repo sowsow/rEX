@@ -16,6 +16,16 @@ namespace rEX
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            /* Configuration of Using Custom View Engine */
+            // Remove default engines and adds the new one
+            /*  e.g.
+                ViewEngines.Engines.Clear();
+                ViewEngines.Engines.Add(new CustomViewEngine.CustomViewEngine());
+            */
+
+
+
         }
     }
 }

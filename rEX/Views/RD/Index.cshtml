@@ -1,7 +1,68 @@
-﻿
+﻿@using rEX.Models.RD
+@model RDIndexViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index";    
+    var user = "Rex";
 }
 
-<h2>Index</h2>
-<h1>Hello Clarity</h1>
+
+<head>
+    @*Not Recommended, hard to maintain when Controller & View become large*@
+    @*<title>@ViewData["PageTitle"]</title>*@   
+</head>
+
+<div class="jumbotron">
+
+    @CustomDeclarativeHelpers.DeclarativeHelperDemo();
+
+    @{
+        <p>@("Hi " + user)</p>
+
+        var number = 21;
+        if (number % 2 == 0)
+        {
+            <p>@number is even</p>
+        }
+        else
+        {
+            <text>@number is odd</text>
+            <br />
+        }
+
+
+    }
+
+
+    @*Comment*@
+    @{
+        // In @{}, comment like C#
+        /* In @{}, comment like C#*/
+        @*@Html.ActionLink("ActionLink Test", "About", "RD")*@
+
+        // @@ makes @ symbol be taken literally, e.g. Email Address
+    }
+
+</div>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <fieldset>
+            <legend>Forgot Password</legend>
+            <p>
+                <label for="userName">User Name:</label>
+                @Html.TextBox("userName")
+                @Html.ValidationMessage("userName")
+            </p>
+            <p>
+                <label fpr="password">Password:</label>
+                @Html.TextBox("password")
+                @Html.ValidationMessage("password")
+            </p>
+            <p>
+                <input type="submit" value="Change Password" />
+            </p>
+        </fieldset>
+    </div>
+}
